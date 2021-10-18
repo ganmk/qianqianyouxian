@@ -1,0 +1,20 @@
+server:
+  port: 8086
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 密码
+    url: jdbc:mysql://ip:3306/database_name?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&allowMultiQueries=true
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates
+    mode: LEGACYHTML5
+    suffix: .html
+  mvc:
+    static-path-pattern: classpath:/static/
+logging:
+  level:
+    com.fuck: info
+    com.com.baomidou: debug

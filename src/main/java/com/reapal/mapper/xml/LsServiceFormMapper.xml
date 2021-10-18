@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reapal.mapper.LsServiceFormMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.reapal.domain.LsServiceForm">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="service_order_id" property="serviceOrderId" />
+        <result column="company_name" property="companyName" />
+        <result column="company_phone" property="companyPhone" />
+        <result column="handle_date" property="handleDate" />
+        <result column="engineer" property="engineer" />
+        <result column="customer_name" property="customerName" />
+        <result column="linkman" property="linkman" />
+        <result column="service_type" property="serviceType" />
+        <result column="service_mode" property="serviceMode" />
+        <result column="brand_specs" property="brandSpecs" />
+        <result column="serial_number" property="serialNumber" />
+        <result column="count" property="count" />
+        <result column="fault_describe" property="faultDescribe" />
+        <result column="vist_date" property="vistDate" />
+        <result column="complet_date" property="completDate" />
+        <result column="repair_result" property="repairResult" />
+        <result column="service_quality" property="serviceQuality" />
+        <result column="customer_advise" property="customerAdvise" />
+        <result column="customer_sign_image" property="customerSignImage" />
+        <result column="creater_id" property="createrId" />
+        <result column="creater_name" property="createrName" />
+        <result column="create_date" property="createDate" />
+        <result column="updater_id" property="updaterId" />
+        <result column="updater_name" property="updaterName" />
+        <result column="update_date" property="updateDate" />
+        <result column="is_deleted" property="isDeleted" />
+    </resultMap>
+
+</mapper>

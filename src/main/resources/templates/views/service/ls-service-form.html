@@ -1,0 +1,347 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="/layouts/default">
+<th:block layout:fragment="title">
+    服务单-页面
+</th:block>
+<!-- head -->
+<th:block layout:fragment="head">
+    <!--页面自定义样式-->
+    <style>
+        /** style */
+    </style>
+</th:block>
+<!-- content -->
+<th:block layout:fragment="content">
+
+    <el-card class="box-card">
+            <!--搜索区域-->
+            <el-row :gutter="120">
+                <el-form class="ui-container-search2" :model="search_group" ref="search_group" label-width="130px" label-position="left">
+                    <el-col :span="12">
+                                <el-form-item label="主键Id：" prop="id">
+                                <el-input v-model="search_group.id" placeholder="主键Id" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="用户Id：" prop="userId">
+                                <el-input v-model="search_group.userId" placeholder="用户Id" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="服务单号：" prop="serviceOrderId">
+                                <el-input v-model="search_group.serviceOrderId" placeholder="服务单号" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="公司名称：" prop="companyName">
+                                <el-input v-model="search_group.companyName" placeholder="公司名称" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="公司电话（服务热线）：" prop="companyPhone">
+                                <el-input v-model="search_group.companyPhone" placeholder="公司电话（服务热线）" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="受理时间：" prop="handleDateList">
+                                <el-date-picker
+                                        clearable
+                                        v-model="search_group.handleDateList"
+                                        type="datetimerange"
+                                        placeholder="选择起止时间"
+                                        :default-time="['00:00:00', '23:59:59']"
+                                        value-format="yyyy-MM-dd HH:mm:ss"
+                                        style="width:100%;"
+                                        :editable="false"
+                                >
+                                </el-date-picker>
+                            </el-form-item>
+                            <el-form-item label="工程师：" prop="engineer">
+                                <el-input v-model="search_group.engineer" placeholder="工程师" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="客户名称：" prop="customerName">
+                                <el-input v-model="search_group.customerName" placeholder="客户名称" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="客户联系人（报修人）：" prop="linkman">
+                                <el-input v-model="search_group.linkman" placeholder="客户联系人（报修人）" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="服务类型（0：普通客户服务；1：VIP客户服务）：" prop="serviceType">
+                                <el-input v-model="search_group.serviceType" placeholder="服务类型（0：普通客户服务；1：VIP客户服务）" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="服务方式（0：上门服务；1：远程服务）：" prop="serviceMode">
+                                <el-input v-model="search_group.serviceMode" placeholder="服务方式（0：上门服务；1：远程服务）" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="品牌规格：" prop="brandSpecs">
+                                <el-input v-model="search_group.brandSpecs" placeholder="品牌规格" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="序列号：" prop="serialNumber">
+                                <el-input v-model="search_group.serialNumber" placeholder="序列号" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="数量：" prop="count">
+                                <el-input v-model="search_group.count" placeholder="数量" clearable></el-input>
+                            </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                            <el-form-item label="故障描述（故障现象）：" prop="faultDescribe">
+                                <el-input v-model="search_group.faultDescribe" placeholder="故障描述（故障现象）" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="上门时间：" prop="vistDateList">
+                                <el-date-picker
+                                        clearable
+                                        v-model="search_group.vistDateList"
+                                        type="datetimerange"
+                                        placeholder="选择起止时间"
+                                        :default-time="['00:00:00', '23:59:59']"
+                                        value-format="yyyy-MM-dd HH:mm:ss"
+                                        style="width:100%;"
+                                        :editable="false"
+                                >
+                                </el-date-picker>
+                            </el-form-item>
+                            <el-form-item label="完成时间：" prop="completDateList">
+                                <el-date-picker
+                                        clearable
+                                        v-model="search_group.completDateList"
+                                        type="datetimerange"
+                                        placeholder="选择起止时间"
+                                        :default-time="['00:00:00', '23:59:59']"
+                                        value-format="yyyy-MM-dd HH:mm:ss"
+                                        style="width:100%;"
+                                        :editable="false"
+                                >
+                                </el-date-picker>
+                            </el-form-item>
+                            <el-form-item label="维修结果：" prop="repairResult">
+                                <el-input v-model="search_group.repairResult" placeholder="维修结果" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="服务质量（0：非常满意；1：满意；2：一般；3：不满意）：" prop="serviceQuality">
+                                <el-input v-model="search_group.serviceQuality" placeholder="服务质量（0：非常满意；1：满意；2：一般；3：不满意）" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="客户意见：" prop="customerAdvise">
+                                <el-input v-model="search_group.customerAdvise" placeholder="客户意见" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="客户签字的图片地址：" prop="customerSignImage">
+                                <el-input v-model="search_group.customerSignImage" placeholder="客户签字的图片地址" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="创建人Id：" prop="createrId">
+                                <el-input v-model="search_group.createrId" placeholder="创建人Id" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="创建人名字：" prop="createrName">
+                                <el-input v-model="search_group.createrName" placeholder="创建人名字" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="创建时间：" prop="createDateList">
+                                <el-date-picker
+                                        clearable
+                                        v-model="search_group.createDateList"
+                                        type="datetimerange"
+                                        placeholder="选择起止时间"
+                                        :default-time="['00:00:00', '23:59:59']"
+                                        value-format="yyyy-MM-dd HH:mm:ss"
+                                        style="width:100%;"
+                                        :editable="false"
+                                >
+                                </el-date-picker>
+                            </el-form-item>
+                            <el-form-item label="更新人Id：" prop="updaterId">
+                                <el-input v-model="search_group.updaterId" placeholder="更新人Id" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="更新人名字：" prop="updaterName">
+                                <el-input v-model="search_group.updaterName" placeholder="更新人名字" clearable></el-input>
+                            </el-form-item>
+                            <el-form-item label="更新时间：" prop="updateDateList">
+                                <el-date-picker
+                                        clearable
+                                        v-model="search_group.updateDateList"
+                                        type="datetimerange"
+                                        placeholder="选择起止时间"
+                                        :default-time="['00:00:00', '23:59:59']"
+                                        value-format="yyyy-MM-dd HH:mm:ss"
+                                        style="width:100%;"
+                                        :editable="false"
+                                >
+                                </el-date-picker>
+                            </el-form-item>
+                            <el-form-item label="是否删除（0未删除，1已删除）：" prop="isDeleted">
+                                <el-input v-model="search_group.isDeleted" placeholder="是否删除（0未删除，1已删除）" clearable></el-input>
+                            </el-form-item>
+                    </el-col>
+                </el-form>
+            </el-row>
+            <!--按钮区域-->
+            <el-row class="fn-mt10 fn-clear">
+                <el-col>
+                    <el-button @click="query(1)"  type="primary" plain>搜 索</el-button>
+                    <el-button @click="resetForm('search_group')"  plain>重 置</el-button>
+                </el-col>
+            </el-row>
+    </el-card>
+
+    <el-card class="box-card fn-mt10">
+            <!--数据区域-->
+            <el-row class="fn-clear">
+                <el-col class="fn-tal" :span="18">
+                    <el-button @click="openDialog('new')" type="primary" plain>添加</el-button>
+                    <el-button @click="openDialog('edit')" :disabled="data_group.multipleSelection.length != 1" type="primary" plain>编辑</el-button>
+                    <el-button @click="openDialog('delete')" :disabled="data_group.multipleSelection.length <= 0" type="primary" plain>删除</el-button>
+                </el-col>
+                <!--
+                <el-col class="fn-tar" :span="6">
+                    <el-button @click="doExportExcel()" plain>导 出</el-button>
+                    <el-button @click="commonOpenExcelDialog()" plain>导出设置</el-button>
+                </el-col>
+                -->
+            </el-row>
+
+            <el-table fixed class="fn-mt10" :data="data_group.list" border highlight-current-row @selection-change="onSelectionChange">
+                <el-table-column align="center" type="selection" width="55"></el-table-column>
+                    <el-table-column sortable prop="id" label="主键Id" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="userId" label="用户Id" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="serviceOrderId" label="服务单号" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="companyName" label="公司名称" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="companyPhone" label="公司电话（服务热线）" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="handleDate" label="受理时间" align="center" min-width="180" show-overflow-tooltip="true">
+                        <template scope="scope">
+                             {{$UF.date.formatLongFromString(scope.row.handleDate)}} 
+                        </template>
+                    </el-table-column>
+                    <el-table-column sortable prop="engineer" label="工程师" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="customerName" label="客户名称" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="linkman" label="客户联系人（报修人）" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="serviceType" label="服务类型（0：普通客户服务；1：VIP客户服务）" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="serviceMode" label="服务方式（0：上门服务；1：远程服务）" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="brandSpecs" label="品牌规格" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="serialNumber" label="序列号" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="count" label="数量" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="faultDescribe" label="故障描述（故障现象）" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="vistDate" label="上门时间" align="center" min-width="180" show-overflow-tooltip="true">
+                        <template scope="scope">
+                             {{$UF.date.formatLongFromString(scope.row.vistDate)}} 
+                        </template>
+                    </el-table-column>
+                    <el-table-column sortable prop="completDate" label="完成时间" align="center" min-width="180" show-overflow-tooltip="true">
+                        <template scope="scope">
+                             {{$UF.date.formatLongFromString(scope.row.completDate)}} 
+                        </template>
+                    </el-table-column>
+                    <el-table-column sortable prop="repairResult" label="维修结果" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="serviceQuality" label="服务质量（0：非常满意；1：满意；2：一般；3：不满意）" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="customerAdvise" label="客户意见" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="customerSignImage" label="客户签字的图片地址" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="createrId" label="创建人Id" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="createrName" label="创建人名字" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="createDate" label="创建时间" align="center" min-width="180" show-overflow-tooltip="true">
+                        <template scope="scope">
+                             {{$UF.date.formatLongFromString(scope.row.createDate)}} 
+                        </template>
+                    </el-table-column>
+                    <el-table-column sortable prop="updaterId" label="更新人Id" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="updaterName" label="更新人名字" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+                    <el-table-column sortable prop="updateDate" label="更新时间" align="center" min-width="180" show-overflow-tooltip="true">
+                        <template scope="scope">
+                             {{$UF.date.formatLongFromString(scope.row.updateDate)}} 
+                        </template>
+                    </el-table-column>
+                    <el-table-column sortable prop="isDeleted" label="是否删除（0未删除，1已删除）" align="center" min-width="180" show-overflow-tooltip="true"></el-table-column>
+            </el-table>
+            <!-- 分页区域 -->
+            <el-pagination class="fn-mt25" :total="data_group.pagination.total" :current-page="data_group.pagination.index" :page-sizes="[10, 30, 50, 100]"
+                           :page-size="data_group.pagination.size" layout="->,total, sizes, prev, pager, next, jumper" @current-change="onCurrentPageChange" @size-change="onPageSizeChange">
+            </el-pagination>
+    </el-card>
+
+
+    <!-- 新建/编辑弹出框start -->
+    <el-dialog :title="dialogTitle" :visible.sync="dialogFormVisible" width="50%">
+        <el-form label-width="150px" :model="form" :rules="rules" ref="form" label-position="right">
+            <el-form-item class="fn-ml30" label="主键Id：" prop="id">
+                <el-input v-model="form.id" maxlength="" prop="id"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="用户Id：" prop="userId">
+                <el-input v-model="form.userId" maxlength="" prop="userId"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="服务单号：" prop="serviceOrderId">
+                <el-input v-model="form.serviceOrderId" maxlength="" prop="serviceOrderId"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="公司名称：" prop="companyName">
+                <el-input v-model="form.companyName" maxlength="" prop="companyName"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="公司电话（服务热线）：" prop="companyPhone">
+                <el-input v-model="form.companyPhone" maxlength="" prop="companyPhone"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="受理时间：" prop="handleDate">
+                <el-date-picker style="width:100%;" v-model="form.handleDate" type="date" placeholder="选择日期" :disabled="false"></el-date-picker>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="工程师：" prop="engineer">
+                <el-input v-model="form.engineer" maxlength="" prop="engineer"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="客户名称：" prop="customerName">
+                <el-input v-model="form.customerName" maxlength="" prop="customerName"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="客户联系人（报修人）：" prop="linkman">
+                <el-input v-model="form.linkman" maxlength="" prop="linkman"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="服务类型（0：普通客户服务；1：VIP客户服务）：" prop="serviceType">
+                <el-input v-model="form.serviceType" maxlength="" prop="serviceType"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="服务方式（0：上门服务；1：远程服务）：" prop="serviceMode">
+                <el-input v-model="form.serviceMode" maxlength="" prop="serviceMode"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="品牌规格：" prop="brandSpecs">
+                <el-input v-model="form.brandSpecs" maxlength="" prop="brandSpecs"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="序列号：" prop="serialNumber">
+                <el-input v-model="form.serialNumber" maxlength="" prop="serialNumber"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="数量：" prop="count">
+                <el-input v-model="form.count" maxlength="" prop="count"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="故障描述（故障现象）：" prop="faultDescribe">
+                <el-input v-model="form.faultDescribe" maxlength="" prop="faultDescribe"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="上门时间：" prop="vistDate">
+                <el-date-picker style="width:100%;" v-model="form.vistDate" type="date" placeholder="选择日期" :disabled="false"></el-date-picker>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="完成时间：" prop="completDate">
+                <el-date-picker style="width:100%;" v-model="form.completDate" type="date" placeholder="选择日期" :disabled="false"></el-date-picker>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="维修结果：" prop="repairResult">
+                <el-input v-model="form.repairResult" maxlength="" prop="repairResult"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="服务质量（0：非常满意；1：满意；2：一般；3：不满意）：" prop="serviceQuality">
+                <el-input v-model="form.serviceQuality" maxlength="" prop="serviceQuality"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="客户意见：" prop="customerAdvise">
+                <el-input v-model="form.customerAdvise" maxlength="" prop="customerAdvise"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="客户签字的图片地址：" prop="customerSignImage">
+                <el-input v-model="form.customerSignImage" maxlength="" prop="customerSignImage"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="创建人Id：" prop="createrId">
+                <el-input v-model="form.createrId" maxlength="" prop="createrId"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="创建人名字：" prop="createrName">
+                <el-input v-model="form.createrName" maxlength="" prop="createrName"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="创建时间：" prop="createDate">
+                <el-date-picker style="width:100%;" v-model="form.createDate" type="date" placeholder="选择日期" :disabled="false"></el-date-picker>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="更新人Id：" prop="updaterId">
+                <el-input v-model="form.updaterId" maxlength="" prop="updaterId"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="更新人名字：" prop="updaterName">
+                <el-input v-model="form.updaterName" maxlength="" prop="updaterName"></el-input>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="更新时间：" prop="updateDate">
+                <el-date-picker style="width:100%;" v-model="form.updateDate" type="date" placeholder="选择日期" :disabled="false"></el-date-picker>
+            </el-form-item>
+            <el-form-item class="fn-ml30" label="是否删除（0未删除，1已删除）：" prop="isDeleted">
+                <el-input v-model="form.isDeleted" maxlength="" prop="isDeleted"></el-input>
+            </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="primary" @click="submitForm('form')">确 定</el-button>
+        </div>
+    </el-dialog>
+    <!-- 新建/编辑弹出框end   -->
+
+
+</th:block>
+
+<!-- js -->
+<th:block layout:fragment="js">
+    <!--页面js-->
+       <!-- <script th:src="@{/js/ls-com.fuck.service-form.js}"></script>-->
+        <script th:src="@{/js/code/ls-service-form.js}"></script>
+</th:block>
+</html>
