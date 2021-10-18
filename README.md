@@ -53,3 +53,9 @@
     简书：https://www.jianshu.com/u/8523e601fa4e
     
     github: https://github.com/jackcooper2015
+    
+    
+ 
+ # 基于作者的工具修改的业务系统 ，测试通过，使用的时候，用doc>jar下的jar来生成业务代码，按结构拷贝到此系统里即可；
+ # doc文件夹下的2.0版本针对mysql 5.x系列的代码生成工具，3.0针对mysql 8.x系列的生成工具；请放心使用
+ 
